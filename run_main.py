@@ -237,7 +237,7 @@ def run_prefstgn(batch_size,patience,delta,num_layers,num_x,dropout,lr,weight_de
 
             tra_acc_1+=accuracy(sorted_indice,shuffle_indices_1d,1)#多元，1d标签
             acc_5+=accuracy(sorted_indice,shuffle_indices_1d,5)
-            mrr+=MRR(sorted_indice,shuffle_indices_1d)
+            mrr+=MRR(sorted_indice,shuffle_indices_1d,k)
 
         end=datetime.now()
         total=(end-start).total_seconds()
@@ -280,7 +280,7 @@ def run_prefstgn(batch_size,patience,delta,num_layers,num_x,dropout,lr,weight_de
                     acc_5+=accuracy(sorted_indice,shuffle_indices_1d,5)
                     acc_10+=accuracy(sorted_indice,shuffle_indices_1d,10)
                     acc_15+=accuracy(sorted_indice,shuffle_indices_1d,15)
-                    mrr+=MRR(sorted_indice,shuffle_indices_1d)
+                    mrr+=MRR(sorted_indice,shuffle_indices_1d,k)
                 early_stop(test_epoch_loss,tra_acc_1)
             print(
                 'val:',
