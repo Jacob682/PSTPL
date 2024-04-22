@@ -79,11 +79,11 @@ def accuracy(indices,batch_y,k,count=0,delta_dist=0):
             hit+=1
     return hit
 
-def MRR(indices,batch_y):
+def MRR(indices,batch_y,k):
     m=0
     for i in range(indices.size(0)):
         sort=indices[i]
-        if batch_y[i].long() in sort:
+        if batch_y[i].long() in sort[:k]:
             m+=1/(torch.where(sort==batch_y[i])[0]+1)
     return m
 
